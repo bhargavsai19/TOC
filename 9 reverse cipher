@@ -1,0 +1,26 @@
+#include <stdio.h>
+#include <string.h>
+void encryptReverseCipher(char *str) {
+    int length = strlen(str);
+    char temp;
+    for (int i = 0; i < length / 2; i++) {
+        temp = str[i];
+        str[i] = str[length - i - 1];
+        str[length - i - 1] = temp;
+    }
+}
+void decryptReverseCipher(char *str) {
+    encryptReverseCipher(str);
+}
+
+int main() {
+    char message[100];
+    printf("Enter a message to encrypt: ");
+    fgets(message, sizeof(message), stdin);
+    message[strcspn(message, "\n")] = '\0';
+    encryptReverseCipher(message);
+    printf("Encrypted message: %s\n", message);
+    decryptReverseCipher(message);
+    printf("Decrypted message: %s\n", message);
+    return 0;
+}
